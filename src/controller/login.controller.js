@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const { PRIVITE_KEY } = require("../config/secret");
 
-class LoginRouter {
+class LoginController {
   async sign(ctx, next) {
     // 1.获取用户信息
     const { id, name } = ctx.user;
@@ -21,4 +21,4 @@ class LoginRouter {
   }
 }
 
-module.exports = new LoginRouter();
+module.exports = new LoginController();
