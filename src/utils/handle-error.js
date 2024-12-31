@@ -30,11 +30,11 @@ app.on("error", (err, ctx) => {
       message = "密码错误，请重新输入~";
       break;
     case UNAUTHORIZATION:
-      code = -2001;
+      code = -1005;
       message = "token不正确或已过期，请重新登录~";
       break;
     case OPERATION_NOT_ALLOWED:
-      code = -2002;
+      code = -2001;
       message = "没有权限操作~";
       break;
   }

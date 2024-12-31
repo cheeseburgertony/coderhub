@@ -5,6 +5,7 @@ const {
   list,
   detail,
   update,
+  remove,
 } = require("../controller/moment.controller");
 const verifyMomentPermission = require("../middleware/permission.middleware");
 
@@ -14,5 +15,6 @@ momentRouter.post("/", verifyAuth, create);
 momentRouter.get("/", list);
 momentRouter.get("/:momentId", detail);
 momentRouter.patch("/:momentId", verifyAuth, verifyMomentPermission, update);
+momentRouter.delete("/:momentId", verifyAuth, verifyMomentPermission, remove);
 
 module.exports = momentRouter;
