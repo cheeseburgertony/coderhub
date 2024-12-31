@@ -17,6 +17,21 @@ class MomentController {
       data: result,
     };
   }
+
+  async list(ctx, next) {
+    // 1.获取来自客户端的开始页和偏移量，用于分页
+    const { offset, size } = ctx.query;
+    console.log(offset, size);
+
+    // 2.查询数据库
+    const result = await momentService.queryList(offset, size);
+
+    ctx.body = {
+      code: 0,
+      message: "获取动态列表成功",
+      data: result,
+    };
+  }
 }
 
 module.exports = new MomentController();
