@@ -18,7 +18,7 @@ class MomentService {
       LIMIT ?, ?;
     `;
 
-    const [result] = await connection.execute(statement, [offset, size]);
+    const [result] = await connection.execute(statement, [String(offset), String(size)]);
     return result;
   }
 
@@ -34,6 +34,12 @@ class MomentService {
     `;
 
     const [result] = await connection.execute(statement, [id]);
+    return result;
+  }
+
+  async update(content, momentId) {
+    const statement = "UPDATE moment SET content = ? WHERE id = ?;";
+    const [result] = await connection.execute(statement, [content, momentId]);
     return result;
   }
 }
