@@ -19,7 +19,7 @@ connectionPool.getConnection((err, connection) => {
   }
 
   // 2.获取connection，尝试和数据库连接是否成功
-  connection.connect((err, connection) => {
+  connection.connect((err) => {
     if (err) {
       console.log("和数据库交互失败~");
     } else {

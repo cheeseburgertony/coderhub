@@ -1,6 +1,6 @@
 const {
   NAME_OR_PASSWORD_IS_REQUIRED,
-  NAME_ALREADY_EXISTS,
+  NAME_IS_ALREADY_EXISTS,
 } = require("../config/error");
 const userService = require("../service/user.service");
 const md5password = require("../utils/md5-password");
@@ -17,7 +17,7 @@ const verifyUser = async (ctx, next) => {
   // 2.2.验证用户名是否被注册过
   const users = await userService.findUserByName(name);
   if (users.length) {
-    return ctx.app.emit("error", NAME_ALREADY_EXISTS, ctx);
+    return ctx.app.emit("error", NAME_IS_ALREADY_EXISTS, ctx);
   }
 
   // 3.验证通过，执行下一步
