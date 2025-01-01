@@ -11,7 +11,7 @@ class MomentService {
     const statement = `
       SELECT
         m.id id, m.content content, m.createAt createTime, m.updateAt updateTime,
-        JSON_OBJECT('id',u.id, 'name', u.name, 'creatTime', u.creatAt, 'updateTime', u.updateAt) user,
+        JSON_OBJECT('id',u.id, 'name', u.name, 'avatarUrl', u.avatar_url, 'creatTime', u.creatAt, 'updateTime', u.updateAt) user,
         (SELECT COUNT(*) FROM comment WHERE comment.moment_id = m.id) commentCount,
         (SELECT COUNT(*) FROM moment_label ml WHERE ml.moment_id = m.id) labelCount
       FROM moment m
@@ -31,12 +31,12 @@ class MomentService {
     const statement = `
       SELECT
         m.id id, m.content content, m.createAt createTime, m.updateAt updateTime,
-        JSON_OBJECT('id',u.id, 'name', u.name, 'creatTime', u.creatAt, 'updateTime', u.updateAt) user,
+        JSON_OBJECT('id',u.id, 'name', u.name, 'avatarUrl', u.avatar_url, 'creatTime', u.creatAt, 'updateTime', u.updateAt) user,
         (
           SELECT
           JSON_ARRAYAGG(JSON_OBJECT(
             'id', c.id, 'content', c.content, 'comment_id', c.comment_id,
-            'user', JSON_OBJECT('id', cu.id, 'name', cu.name)
+            'user', JSON_OBJECT('id', cu.id, 'name', cu.name, 'avatarUrl', cu.avatar_url)
           ))
           FROM comment c
           LEFT JOIN user cu ON c.user_id = cu.id
