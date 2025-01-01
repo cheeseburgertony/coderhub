@@ -24,6 +24,17 @@ class CommentController {
       data: result,
     };
   }
+
+  async remove(ctx, next) {
+    const { commentId } = ctx.params;
+    const result = await commentService.remove(commentId);
+
+    ctx.body = {
+      code: 0,
+      message: "删除评论成功~",
+      data: result,
+    };
+  }
 }
 
 module.exports = new CommentController();
